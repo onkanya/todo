@@ -4,8 +4,9 @@ class ListItems extends Component {
     // let todos = this.todos.map
     return (
       <React.Fragment>
-        {this.props.todos.map(item => (
+        {this.props.todos.map((item, index) => (
           <div
+            onChange={() => this.props.onCheckBox(index, item.id)}
             key={item.id}
             style={{
               backgroundColor: "#fefefe",

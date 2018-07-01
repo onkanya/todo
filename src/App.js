@@ -7,7 +7,7 @@ import Axios from "axios";
 //มี . นำหน้า คือค้นหาจากไฟล์ของเรา ถ้าไม่มี . คือหาจาก node_modules
 
 // สร้างตัวแปรเก็บ url เพื่อเรียกใช้ให้ง่ายขึ้น
-const URL ="http://localhost:3001";
+const URL = "https://onkanya-server.herokuapp.com";//http://localhost:3001
 
 class App extends Component {
   constructor(props) {
@@ -19,13 +19,14 @@ class App extends Component {
     // โคตรงง
     this.onChangeMessage = this.onChangeMessage.bind(this);
     this.onSubmitMessage = this.onSubmitMessage.bind(this);
+    this.onCheckBox = this.onCheckBox.bind(this);
   }
 
   componentDidMount = () => {
     // Axios.get("http://localhost:3001/todos").then(response => {
-    Axios.get(URL +"/todos").then(response => {
+    Axios.get(URL + "/todos").then(response => {
       // console.log(response);
-      this.setState({todos: response.data});
+      this.setState({ todos: response.data });
     });
   };
 
@@ -46,12 +47,22 @@ class App extends Component {
     // };
     // oldTodos.push(newmessage);
     // this.setState({ todos: oldTodos });
-    Axios.post(URL +"/todos",{
+    e.preventDefault();
+    Axios.post(URL + "/todos", {
       name: this.state.message,
       complete: false
     }).then(response => {
       let oldState = this.state.todos;
       oldState.push(response.data);
+      this.setState({ todos: oldState });
+    });
+  }
+
+  onCheckBox(index, id) {
+    let check = this.state.todos[index].complete;
+    Axios.patch(URL + "/todos/" + id, {complete: !check }).then(response => {
+      let oldState = this.state.todos
+      oldState[index].complete = !check
       this.setState({todos: oldState});
     })
   }
@@ -69,7 +80,7 @@ class App extends Component {
         }}
       >
         <HeaderComponents />
-        <List todos={this.state.todos} />
+        <List todos={this.state.todos} onCheckBox={this.onCheckBox} />
         <FormSubmit
           onChangeMessage={this.onChangeMessage}
           onSubmitMessage={this.onSubmitMessage}

@@ -15,7 +15,7 @@ class List extends Component {
           overflowX: "hidden"
         }}
       >
-        <ListItems todos={this.props.todos} />
+        <ListItems todos={this.props.todos} onCheckBox={this.props.onCheckBox} />
       </div>
     );
   }
