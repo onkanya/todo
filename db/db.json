@@ -1,0 +1,45 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "name": "shopping",
+      "complete": false
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "name": "Swimming",
+      "complete": false,
+      "id": 4
+    },
+    {
+      "name": "Swimming",
+      "complete": false,
+      "id": 5
+    },
+    {
+      "name": "Swimming",
+      "complete": false,
+      "id": 6
+    },
+    {
+      "name": "Swimming",
+      "complete": false,
+      "id": 7
+    },
+    {
+      "name": "Running",
+      "complete": false,
+      "id": 8
+    },
+    {
+      "name": "HomeWork",
+      "complete": false,
+      "id": 9
+    }
+  ]
+}
